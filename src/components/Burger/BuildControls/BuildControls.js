@@ -14,7 +14,8 @@ const buildControls = (props) => (
     {/*Loop trough "controls" ES6's constant*/}
     {controls.map(ctrl => (
         <BuildControl 
-        added={()=> props.ingredientAdded(ctrl.type)} 
+        added={()=> props.ingredientAdded(ctrl.type)}
+        removed={()=>props.ingredientRemoved(ctrl.type)} 
         key={ctrl.label} 
         label={ctrl.label} />
     ))}
