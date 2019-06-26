@@ -11,13 +11,14 @@ const controls = [
 
 const buildControls = (props) => (
     <div className={classes.BuildControls}>
-    {/*Loop trough "controls" ES6's constant*/}
+    {/*Loop trough "controls" ES6's constant*/} 
     {controls.map(ctrl => (
-        <BuildControl 
+        <BuildControl  
         added={()=> props.ingredientAdded(ctrl.type)}
         removed={()=>props.ingredientRemoved(ctrl.type)} 
         key={ctrl.label} 
-        label={ctrl.label} />
+        label={ctrl.label}
+        disabled={props.disabled[ctrl.type]} />
     ))}
     </div>
 
