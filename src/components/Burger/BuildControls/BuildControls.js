@@ -11,6 +11,7 @@ const controls = [
 
 const buildControls = (props) => (
     <div className={classes.BuildControls}>
+    <p>Current Price: <strong>{props.price}</strong></p>
     {/*Loop trough "controls" ES6's constant*/} 
     {controls.map(ctrl => (
         <BuildControl  
