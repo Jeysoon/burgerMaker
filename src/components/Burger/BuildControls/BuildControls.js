@@ -11,7 +11,7 @@ const controls = [
 
 const buildControls = (props) => (
     <div className={classes.BuildControls}>
-    <p>Current Price: <strong>{props.price}</strong></p>
+    <p>Current Price: <strong>{props.price.toFixed(2)}</strong></p>
     {/*Loop trough "controls" ES6's constant*/} 
     {controls.map(ctrl => (
         <BuildControl  
@@ -21,6 +21,9 @@ const buildControls = (props) => (
         label={ctrl.label}
         disabled={props.disabled[ctrl.type]} />
     ))}
+    <button 
+    className={classes.OrderButton}
+    disabled={!props.purchasable}>ORDER NOW!</button>
     </div>
 
 );
