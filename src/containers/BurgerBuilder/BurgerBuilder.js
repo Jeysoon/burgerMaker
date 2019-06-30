@@ -63,17 +63,21 @@ class BurgerBuilder extends Component{
     };
     purchaseCancelHandler = () => {
         this.setState({purchasing: false});
-    };
+    }
     purchaseHandler = () =>{
         this.setState({purchasing: true});
-    };
-    removeIngredientHandl1er = (type) => {
+    }
+
+    purchaseContinueHandler = () => {
+        alert('You continued!');
+    }
+
+    removeIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
-        console.log('[BurguerBuilder.js] => Before oldCount if');
         if(oldCount <= 0){
+            console.log('oldCount < 1');
             return;
         }
-
         const updatedCount = oldCount - 1;
         const updatedIngredients = {
             ...this.state.ingredients
@@ -81,12 +85,11 @@ class BurgerBuilder extends Component{
         updatedIngredients[type] = updatedCount;
         const priceDeduction = INGREDIENT_PRICES[type];
         const oldPrice = this.state.totalPrice;
-        console.log(oldPrice);
         const newPrice = oldPrice - priceDeduction;
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients});
         this.updatePurchareState(updatedIngredients);
     }
-
+  
 
     render() {  
         const disabledInfo = {
@@ -101,7 +104,11 @@ class BurgerBuilder extends Component{
             show={this.state.purchasing}
             modalClosed={this.purchaseCancelHandler}>
                 <OrderSummary 
-                ingredients={this.state.ingredients} />
+                ingredients={this.state.ingredients}
+                purchaseCancel={this.purchaseCancelHandler}
+                purchaseContinue={this.purchaseContinueHandler}
+                price={this.state.totalPrice}
+                 />
             </Modal>
             <Burger ingredients={this.state.ingredients} />
             <BuildControls 
@@ -111,10 +118,7 @@ class BurgerBuilder extends Component{
             disabled={disabledInfo}
             purchasable={this.state.purchasable}
             price={this.state.totalPrice}
-            ordered={this.purchaseHandler}
-            />
-            <div>
-            </div>
+            ordered={this.purchaseHandler}/>
         </Aux>    
         );
     }
