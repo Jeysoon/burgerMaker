@@ -12,7 +12,12 @@ class Layout extends Component {
         this.setState({showSideDrawer: !this.state.showSideDrawer})
     }
     toggleHandler = () => {
-        this.setState({showSideDrawer: !this.state.showSideDrawer})
+        // this.setState({showSideDrawer: !this.state.showSideDrawer})
+        // This code up here may lead us to unexpected behavior 
+        // due to the asynchronous nature of how state works.
+         this.setState((prevState) => {
+             return {showSideDrawer: !prevState.showSideDrawer};
+         });
     }
 
     render(){
