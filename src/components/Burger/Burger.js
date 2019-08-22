@@ -1,9 +1,10 @@
 import React from 'react';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 import classes from './Burger.css';
-
+import { withRouter } from 'react-router-dom';
 const burger = (props) => {
     //Transforming an object into an array
+    console.log(props);
     let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey =>{
         //Transform this string value in to an array
@@ -26,4 +27,4 @@ const burger = (props) => {
     );
 };
 
-export default burger;
+export default withRouter(burger);

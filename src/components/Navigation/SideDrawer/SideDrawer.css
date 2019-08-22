@@ -29,3 +29,12 @@
    height: 11%; 
    margin-bottom: 22px;
 }
+/* 
+This media query will check if the maxium 
+width is 499px
+*/
+@media(max-width: 499px){
+    .DesktopOnly{
+        display: none;    
+    }
+}

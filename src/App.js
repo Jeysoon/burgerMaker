@@ -1,16 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Layout from './hoc/Layout/Layout';
+import Checkout from './containers/Checkout/Checkout';
+import { Route, Switch} from 'react-router-dom';
+class App extends Component {
 
-function App() {
-  return (
+  render(){
+    return (
     <div>
       <Layout>  
-      <BurgerBuilder />
+        <Switch>
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/" exact component={BurgerBuilder} />
+        </Switch>
       </Layout>
 
-    </div>
-  );
-}
+    </div>);
+  }
+};
+
+  
 
 export default App;

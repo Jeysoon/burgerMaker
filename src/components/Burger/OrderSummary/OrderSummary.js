@@ -17,6 +17,7 @@ class OrderSummary extends Component {
         return (
             <Aux>
                 <h3>Your Order</h3>
+                <h4>{this.props.dateTime}</h4>
                 <p>A delicious burger with the following ingredients:</p>
                 <ul>
                 {ingredientSummary}
@@ -26,6 +27,7 @@ class OrderSummary extends Component {
                 <Button
                 btnType={'Danger'}>Cancel</Button>
                 <Button
+                clicked={this.props.continueClicked}
                 btnType={'Success'}>Continue!</Button>
             </Aux>
         );
