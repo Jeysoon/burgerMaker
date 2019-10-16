@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 .Label {
     font-weight: bold;
     display: block;
@@ -20,8 +21,16 @@
     width: 100%;
     box-sizing: border-box;
 }
-
+.ValidationError {
+    color: rgb(204, 48, 100);
+    margin: 5px 0;
+} 
 .InputElement:focus {
     outline: none;
     background-color: #ccc;
+}
+.Invalid {
+    border: 1px solid red;
+    background-color: rgb(211, 140, 132);
+
 }

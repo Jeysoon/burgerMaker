@@ -18,6 +18,10 @@
 .Success {
     color: #5C9210;
 }
+.Button:disabled{
+    color: rgb(139, 131, 131);
+    cursor: not-allowed;
+}
 
 .Danger {
     color: #944317;
