@@ -9,7 +9,7 @@ import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import moment from "moment";
-import * as burgerBuilderActions from '../../store/actions/index';
+import * as actions from "../../store/actions/index";
 
 class BurgerBuilder extends Component {
   // constructor(props){
@@ -24,7 +24,6 @@ class BurgerBuilder extends Component {
   componentDidMount() {
     console.log(this.props);
     this.props.onInitIngredients();
-   
   }
 
   updatePurchareState(ingredients) {
@@ -49,15 +48,7 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    // const queryParams = [];
-    // for (let i in this.props.ings) {
-    //   //Property name = property value
-    //   queryParams.push(
-    //     encodeURIComponent(i) + "=" + encodeURIComponent(this.props.ings[i])
-    //   );
-    // }
-    // queryParams.push("price=" + this.state.totalPrice);
-    // const queryString = queryParams.join("&");
+    this.props.onInitPurchase();
     this.props.history.push("/checkout");
   };
   render() {
@@ -116,71 +107,20 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    error: state.error 
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
+    error: state.burgerBuilder.error
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onIngredientAdded: ingName =>
-      dispatch(burgerBuilderActions.addIngredient(ingName)),
-    onIngredientRemoved: ingName =>
-      dispatch(burgerBuilderActions.removeIngredient(ingName)),
-    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
-    };
+    onIngredientAdded: ingName => dispatch(actions.addIngredient(ingName)),
+    onIngredientRemoved: ingName => dispatch(actions.removeIngredient(ingName)),
+    onInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitPurchase: () => dispatch(actions.purchaseInit())
+  };
 };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withErrorHandler(BurgerBuilder, axios));
-
-/*
-  removeIngredientHandler = type => {
-    const oldCount = this.props.ings[type];
-    if (oldCount <= 0) {
-      console.log("oldCount < 1");
-      return;
-    }
-    const updatedCount = oldCount - 1;
-    const updatedIngredients = {
-      ...this.props.ings
-    };
-    updatedIngredients[type] = updatedCount;
-    const priceDeduction = INGREDIENT_PRICES[type];
-    const oldPrice = this.state.totalPrice;
-    const newPrice = oldPrice - priceDeduction;
-    this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
-    this.updatePurchareState(updatedIngredients);
-  }; 
-  
-  inside purchaseContinueHandler
-   //alert("You continued!");
-    // let time_ = moment().format("MMMM Do YYYY, h:mm:ss a");
-
-    // this.setState({ loading: true });
-    // this.setState({ dateTime: time_ });
-    // const order = {
-    //   ingredients: this.state.ingredients,
-    //   price: this.state.totalPrice,
-    //   customer: {
-    //     name: "Jeyson Meza",
-    //     address: {
-    //       street: "Test street",
-    //       zipCode: "80200",
-    //       country: "Mexico"
-    //     },
-    //     email: "jeyson@test.com"
-    //   },
-    //   deliveryMethod: "pro",
-    //   purchaseDateTime: this.state.dateTime
-    // };
-    // axios
-    //   .post("/orders.json", order)
-    //   .then(response => {
-    //     this.setState({ loading: false, purchasing: false });
-    //   })
-    //   .catch(error => {
-    //     this.setState({ loading: false, purchasing: false });
-    //   });
-  */

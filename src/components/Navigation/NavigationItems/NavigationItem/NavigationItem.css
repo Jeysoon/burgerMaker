@@ -7,18 +7,19 @@
 }
 
 .NavigationItem a {
-    color: #8F5C2C;
+    color: lightslategray;
     text-decoration: none;
     height: 100%;
     padding: 16px 10px;
     border-bottom: 4px solid transparent;
     box-sizing: border-box;
+    flex-flow: column;
     display: block;
 }
 .NavigationItem a:hover, 
 .NavigationItem a:active,
 .NavigationItem a.active{
-    color: white;
+    color:rgb(235, 70, 29);
 }
 
 

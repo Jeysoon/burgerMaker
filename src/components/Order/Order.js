@@ -16,7 +16,7 @@ const order = props => {
           display: "inline-block",
           margin: "0 8px",
           border: "1px solid #ccc",
-          padding: "5px"
+          padding: "10px"
         }}
         key={ig.name}
       >
@@ -25,12 +25,13 @@ const order = props => {
     );
   });
   return (
-    <div className={classes.Order}>
+    <div className={classes.Order} >
       <p>Ingredients: {ingredientOutput}</p>
       {/* <p>Price: <strong>USD{Number.parseFloat(props.price).toFixed(2)}</strong></p> */}
       <p>
         Price: <strong>USD{props.price.toFixed(2)}</strong>
       </p>
+      <button onClick={props.clicked}>Delete order</button>
     </div>
   );
 };

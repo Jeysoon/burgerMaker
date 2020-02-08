@@ -4,11 +4,18 @@
     list-style: none;
     display: flex;
     flex-flow: column;
-    align-items: center;
+    list-style: none; 
+    list-style-type: none;
+    align-items: left;
     height: 100%;
 }
 @media (min-width: 500px){
     .NavigationItems{
         flex-flow:row;
+        list-style: none; 
+        list-style-type: none;
+        margin: 0;
+        align-items: center;
+        padding: 0;
     }
 }
